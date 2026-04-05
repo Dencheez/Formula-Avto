@@ -15,6 +15,9 @@ import { SubcategoryChips } from "@/components/subcategory-chips"
 import { VinCheckSection } from "@/components/vin-check-section"
 import { DiscountCars } from "@/components/discount-cars"
 import { QuickActions } from "@/components/quick-actions"
+import { Recommendation } from "@/components/Recommendation"
+import { Avto3 } from "@/components/avto-3"
+import { Categories } from "@/components/categories"
 
 type View = "home" | "listings" | "recommendations"
 
@@ -48,6 +51,10 @@ export default function Home() {
       <div className="h-4" />
       <JournalSection />
       <ServicesGrid />
+      <Avto3 />
+      <Categories />
+      <Recommendation />
+
     </>
   )
 
@@ -55,7 +62,7 @@ export default function Home() {
     <>
       <VehicleList title="Объявления" />
       <div className="px-4 py-4">
-        <button 
+        <button
           onClick={() => setIsSaveSearchOpen(true)}
           className="w-full py-3 text-center text-primary font-medium"
         >
@@ -75,35 +82,35 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background max-w-lg mx-auto">
-      <SearchHeader 
+      <SearchHeader
         onBack={handleBack}
-        onFilter={() => setIsFilterOpen(true)} 
+        onFilter={() => setIsFilterOpen(true)}
       />
-      
+
       <main className="pb-20">
         {currentView === "home" && renderHomeView()}
         {currentView === "listings" && renderListingsView()}
         {currentView === "recommendations" && renderRecommendationsView()}
       </main>
 
-      <BottomNavigation 
-        activeTab={activeTab} 
+      <BottomNavigation
+        activeTab={activeTab}
         onTabChange={(tab) => {
           setActiveTab(tab)
           if (tab === "search") {
             setCurrentView("home")
           }
-        }} 
+        }}
       />
 
-      <FilterModal 
-        isOpen={isFilterOpen} 
-        onClose={() => setIsFilterOpen(false)} 
+      <FilterModal
+        isOpen={isFilterOpen}
+        onClose={() => setIsFilterOpen(false)}
       />
 
-      <SaveSearchModal 
-        isOpen={isSaveSearchOpen} 
-        onClose={() => setIsSaveSearchOpen(false)} 
+      <SaveSearchModal
+        isOpen={isSaveSearchOpen}
+        onClose={() => setIsSaveSearchOpen(false)}
       />
     </div>
   )

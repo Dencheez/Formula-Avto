@@ -1,6 +1,6 @@
 "use client"
 
-import { Search, Heart, PlusSquare, MessageCircle, User } from "lucide-react"
+import { Search, Heart, ListFilterPlus, MessageCircle, User } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface BottomNavigationProps {
@@ -9,11 +9,11 @@ interface BottomNavigationProps {
 }
 
 const tabs = [
-  { id: "search", label: "Поиск", icon: Search },
-  { id: "favorites", label: "Избранное", icon: Heart },
-  { id: "add", label: "Объявления", icon: PlusSquare },
-  { id: "messages", label: "Сообщения", icon: MessageCircle },
-  { id: "profile", label: "Профиль", icon: User },
+  { id: "search", label: "Поиск", icon: Search, href: "/" },
+  { id: "favorites", label: "Избранное", icon: Heart, href: "/favorites" },
+  { id: "add", label: "Объявления", icon: ListFilterPlus, href: "/listings" },
+  { id: "messages", label: "Сообщения", icon: MessageCircle, href: "/messages" },
+  { id: "profile", label: "Профиль", icon: User, href: "/profile" },
 ]
 
 export function BottomNavigation({ activeTab, onTabChange }: BottomNavigationProps) {
