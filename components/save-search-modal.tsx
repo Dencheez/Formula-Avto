@@ -18,7 +18,7 @@ export function SaveSearchModal({ isOpen, onClose }: SaveSearchModalProps) {
       <div className="absolute inset-0 bg-black/50" onClick={onClose} />
       <div className="relative w-full bg-background rounded-t-3xl p-6 pb-8 animate-in slide-in-from-bottom">
         <div className="w-12 h-1 bg-muted rounded-full mx-auto mb-6" />
-        
+
         <h2 className="text-2xl font-bold mb-2">
           Добавьте поиск в избранное
         </h2>
@@ -40,8 +40,8 @@ export function SaveSearchModal({ isOpen, onClose }: SaveSearchModalProps) {
             Название поиска
           </label>
           <div className="relative">
-            <Input 
-              defaultValue="Транспорт" 
+            <Input
+              defaultValue="Транспорт"
               className="pr-10 bg-background border-border"
             />
             <button className="absolute right-3 top-1/2 -translate-y-1/2">
@@ -50,7 +50,7 @@ export function SaveSearchModal({ isOpen, onClose }: SaveSearchModalProps) {
           </div>
         </div>
 
-        <Button 
+        <Button
           className="w-full py-6 rounded-xl bg-foreground text-background hover:bg-foreground/90"
           onClick={onClose}
         >
