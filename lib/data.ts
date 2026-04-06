@@ -123,14 +123,14 @@ export const vehicles: Vehicle[] = [
 
 export const subcategories = [
   "Автомобили",
-  "Запчасти и аксессуары", 
+  "Запчасти и аксессуары",
   "Мотоциклы и мототехника",
   "Грузовики и спецтехника",
 ]
 
 export const vehicleSubcategories = [
   "Грузовики",
-  "Тягачи", 
+  "Тягачи",
   "Прицепы",
   "Шины",
   "Сельхозтехника",
@@ -144,8 +144,8 @@ export const journalArticles = [
     image: "/placeholder.svg?height=150&width=200",
   },
   {
-    id: "2", 
-    title: "Зовите всех на Авито",
+    id: "2",
+    title: "Зовите всех на Форум Авто",
     image: "/placeholder.svg?height=150&width=200",
   },
   {

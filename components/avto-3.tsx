@@ -9,7 +9,7 @@ const youngCars = [
     title: "Kia Rio 1.6 MT, 2021, 86 000 км",
     price: 1500000,
     location: "Ставропольский край, Будённовский...",
-    badge: "Только на Авито",
+    badge: "Только на Форум Авто",
     badgeColor: "bg-purple-600",
   },
   {
@@ -89,7 +89,6 @@ export function Avto3() {
               <h3 className="text-sm font-medium line-clamp-2">{car.title}</h3>
               <div className="flex items-baseline gap-1 mt-1">
                 <span className="font-bold">{formatPrice(car.price)} ₽</span>
-                <span className="text-xs">💰</span>
               </div>
               <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
                 {car.location}

@@ -4,7 +4,7 @@ import { journalArticles } from "@/lib/data"
 
 export function JournalSection() {
   return (
-    <div className="px-4 py-6 scrollbar-hide">
+    <div className="px-4 py-6">
       <h2 className="text-xl font-bold mb-4">Журнал</h2>
       <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide">
         {journalArticles.map((article) => (

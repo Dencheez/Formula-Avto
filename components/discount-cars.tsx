@@ -12,6 +12,7 @@ const discountCars = [
     location: "Нижегородская обл., Нижний Новгород",
     badge: "Надёжный партнёр",
     badgeColor: "bg-green-500",
+    img: "/big_637774_123083_999.webp",
   },
   {
     id: "2",
@@ -22,6 +23,7 @@ const discountCars = [
     badge: "1 владелец",
     badgeColor: "bg-blue-500",
     badgeCount: "14",
+    img: "/big_637774_123083_999.webp",
   },
 ]
 
@@ -38,7 +40,7 @@ export function DiscountCars() {
           <div key={car.id} className="rounded-xl overflow-hidden bg-background border border-border">
             <div className="relative aspect-[4/3] bg-secondary">
               <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-sm">
-                Фото
+                {car.img}
               </div>
               <span className={`absolute bottom-2 left-2 px-2 py-1 ${car.badgeColor} text-white text-xs rounded`}>
                 {car.badge}
@@ -56,7 +58,6 @@ export function DiscountCars() {
               <h3 className="text-sm font-medium line-clamp-2">{car.title}</h3>
               <div className="flex items-baseline gap-1 mt-1">
                 <span className="font-bold">{formatPrice(car.price)} ₽</span>
-                <span className="text-xs">💰</span>
               </div>
               {car.originalPrice && (
                 <span className="text-xs text-muted-foreground line-through">
