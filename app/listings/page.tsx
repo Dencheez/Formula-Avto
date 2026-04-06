@@ -2,8 +2,11 @@
 
 import { BottomNavigation } from "@/components/bottom-navigation"
 import { Car, Phone, Star } from "lucide-react"
+import { useAuth } from "@/lib/auth-context"
 
 export default function ListingsPage() {
+  const { openAuthModal, isAuthenticated } = useAuth()
+
   return (
     <div className="min-h-screen bg-background max-w-lg mx-auto flex flex-col pb-20">
       {/* Header */}
@@ -61,13 +64,26 @@ export default function ListingsPage() {
             </div>
         </div>
 
-        <p className="text-center text-[#1A1A1A] text-lg mb-8 max-w-[300px]">
-          Пока пусто, но это не навсегда: здесь появятся ваши объявления
-        </p>
-
-        <button className="w-full max-w-[320px] bg-[#1A1A1A] text-white py-3.5 rounded-xl font-medium text-[15px] hover:bg-black transition-colors">
-          Войти или зарегистрироваться
-        </button>
+        {isAuthenticated ? (
+          <>
+            <h2 className="text-center text-[#1A1A1A] text-xl font-bold mb-4">Разместите ваше первое объявление</h2>
+            <button className="w-full max-w-[320px] bg-[#1A1A1A] text-white py-3.5 rounded-xl font-medium text-[15px] hover:bg-black transition-colors">
+              Подать объявление
+            </button>
+          </>
+        ) : (
+          <>
+            <p className="text-center text-[#1A1A1A] text-lg mb-8 max-w-[300px]">
+              Пока пусто, но это не навсегда: здесь появятся ваши объявления
+            </p>
+            <button 
+              onClick={openAuthModal}
+              className="w-full max-w-[320px] bg-[#1A1A1A] text-white py-3.5 rounded-xl font-medium text-[15px] hover:bg-black transition-colors"
+            >
+              Войти или зарегистрироваться
+            </button>
+          </>
+        )}
       </div>
 
       <BottomNavigation />

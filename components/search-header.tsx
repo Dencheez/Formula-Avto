@@ -1,7 +1,8 @@
 "use client"
 
-import { ArrowLeft, SlidersHorizontal } from "lucide-react"
+import { SlidersHorizontal } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 interface SearchHeaderProps {
   onBack?: () => void
@@ -12,13 +13,10 @@ export function SearchHeader({ onBack, onFilter }: SearchHeaderProps) {
   return (
     <header className="sticky top-0 z-50 flex items-center gap-3 bg-background px-4 py-3 border-b border-border">
       <Button variant="ghost" size="icon" onClick={onBack} className="shrink-0">
-        <ArrowLeft className="h-5 w-5" />
+        <Link href="/">  <h2>ФА</h2></Link>
       </Button>
-
       <div className="flex-1 flex items-center gap-2 bg-secondary rounded-full px-4 py-2">
-        <span className="text-muted-foreground text-sm truncate">
-          Поиск во всех рег...
-        </span>
+        <input type="text" placeholder="Поиск во всех рег..." className="w-full bg-transparent border-none outline-none" />
       </div>
 
       <Button variant="ghost" size="icon" className="shrink-0">
