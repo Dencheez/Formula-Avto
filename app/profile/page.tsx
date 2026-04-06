@@ -1,8 +1,9 @@
 "use client"
 
 import { BottomNavigation } from "@/components/bottom-navigation"
-import { Bell, Settings, MessageSquare, Heart, Phone, UserCircle } from "lucide-react"
+import { Bell, Settings, MessageSquare, Heart, Phone, UserCircle, ArrowLeft } from "lucide-react"
 import { useAuth } from "@/lib/auth-context"
+import Link from "next/link"
 
 export default function ProfilePage() {
   const { openAuthModal, isAuthenticated, logout } = useAuth()
@@ -11,12 +12,16 @@ export default function ProfilePage() {
     <div className="min-h-screen bg-background max-w-lg mx-auto flex flex-col pb-20">
       {/* Header */}
       <header className="px-4 py-4 flex items-center justify-end gap-5">
-        <button className="text-foreground">
-          <Bell className="w-6 h-6" fill="currentColor" />
-        </button>
-        <button className="text-foreground">
-          <Settings className="w-6 h-6" fill="currentColor" strokeWidth={1.5} />
-        </button>
+        <Link href="/profile/push-messages">
+          <button className="text-foreground">
+            <Bell className="w-6 h-6" />
+          </button>
+        </Link>
+        <Link href="/profile/settings">
+          <button className="text-foreground ">
+            <Settings className="w-6 h-6" strokeWidth={1.5} />
+          </button>
+        </Link>
       </header>
 
       {/* Content */}
@@ -31,12 +36,6 @@ export default function ProfilePage() {
             <p className="text-[#808080] text-[15px] mb-8">
               Добро пожаловать в профиль!
             </p>
-            <button
-              onClick={logout}
-              className="w-full max-w-[320px] bg-red-50 text-red-500 py-3.5 rounded-xl font-medium text-[16px] hover:bg-red-100 transition-colors"
-            >
-              Выйти из аккаунта
-            </button>
           </>
         ) : (
           <>
@@ -60,7 +59,6 @@ export default function ProfilePage() {
               {/* Bottom Right: Phone (Green) */}
               <div className="absolute bottom-2 right-4 w-20 h-20 bg-[#4AD32F] rounded-full flex items-center justify-center shadow-md border-4 border-white/60">
                 <Phone className="w-10 h-10 text-white transform -rotate-12" fill="currentColor" />
-                <div className="absolute -top-1 right-2 w-8 h-2 bg-green-500 rounded-full rotate-45"></div>
               </div>
             </div>
 
