@@ -11,7 +11,6 @@ import { VehicleList } from "@/components/vehicle-list"
 import { FilterModal } from "@/components/filter-modal"
 import { SaveSearchModal } from "@/components/save-search-modal"
 import { PromoBanner } from "@/components/promo-banner"
-import { SubcategoryChips } from "@/components/subcategory-chips"
 import { VinCheckSection } from "@/components/vin-check-section"
 import { DiscountCars } from "@/components/discount-cars"
 import { QuickActions } from "@/components/quick-actions"
@@ -22,7 +21,6 @@ import { Categories } from "@/components/categories"
 type View = "home" | "listings" | "recommendations"
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState("search")
   const [isFilterOpen, setIsFilterOpen] = useState(false)
   const [isSaveSearchOpen, setIsSaveSearchOpen] = useState(false)
   const [currentView, setCurrentView] = useState<View>("home")
@@ -46,7 +44,6 @@ export default function Home() {
       <DiscountCars />
       <PromoBanner />
       <div className="h-4" />
-      <SubcategoryChips title="Коммерческий транспорт" />
       <VinCheckSection />
       <div className="h-4" />
       <JournalSection />
@@ -93,15 +90,7 @@ export default function Home() {
         {currentView === "recommendations" && renderRecommendationsView()}
       </main>
 
-      <BottomNavigation
-        activeTab={activeTab}
-        onTabChange={(tab) => {
-          setActiveTab(tab)
-          if (tab === "search") {
-            setCurrentView("home")
-          }
-        }}
-      />
+      <BottomNavigation />
 
       <FilterModal
         isOpen={isFilterOpen}
