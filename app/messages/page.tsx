@@ -3,6 +3,7 @@
 import { useAuth } from "@/lib/auth-context"
 import { BottomNavigation } from "@/components/bottom-navigation"
 import { MessageCircle, Settings } from "lucide-react"
+import Link from "next/link"
 
 export default function MessagesPage() {
   const { isAuthenticated, openAuthModal } = useAuth()
@@ -11,9 +12,11 @@ export default function MessagesPage() {
     <div className="min-h-screen bg-background max-w-lg mx-auto flex flex-col pb-20">
       <header className="px-4 py-4 flex items-center justify-between border-b border-border/40">
         <h1 className="text-xl font-bold">Сообщения</h1>
-        <button className="text-foreground">
-          <Settings className="w-6 h-6" fill="currentColor" strokeWidth={1.5} />
-        </button>
+        <Link href="/profile/settings">
+          <button className="text-foreground">
+            <Settings className="w-6 h-6" strokeWidth={1.5} />
+          </button>
+        </Link>
       </header>
 
       <div className="flex-1 flex flex-col items-center justify-center px-6 text-center">
@@ -26,7 +29,7 @@ export default function MessagesPage() {
             <p className="text-muted-foreground text-[15px] mb-8">
               Чтобы писать сообщения и читать ответы, войдите в профиль или зарегистрируйтесь.
             </p>
-            <button 
+            <button
               onClick={openAuthModal}
               className="w-full max-w-[320px] bg-black text-white py-3.5 rounded-xl font-medium text-[15px] hover:bg-black/80 transition-colors"
             >
