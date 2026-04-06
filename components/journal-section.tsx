@@ -10,10 +10,18 @@ export function JournalSection() {
         {journalArticles.map((article) => (
           <button
             key={article.id}
-            className="flex-shrink-0 w-40 rounded-xl overflow-hidden bg-secondary"
+            className="flex-shrink-0 w-40 rounded-xl overflow-hidden bg-secondary text-left"
           >
-            <div className="aspect-[4/3] bg-gradient-to-br from-secondary to-muted flex items-center justify-center">
-              <div className="w-20 h-20 rounded-full bg-muted-foreground/10" />
+            <div className="aspect-[4/3] relative bg-muted flex items-center justify-center">
+              {article.image ? (
+                <img
+                  src={article.image}
+                  alt={article.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-20 h-20 rounded-full bg-muted-foreground/10" />
+              )}
             </div>
             <div className="p-3">
               <p className="text-sm text-center line-clamp-2">{article.title}</p>

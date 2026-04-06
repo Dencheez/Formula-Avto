@@ -1,14 +1,14 @@
 import type { Vehicle, Category, Service } from "./types"
 
 export const categories: Category[] = [
-  { id: "cars", name: "Легковые авто", icon: "car", image: "/placeholder.svg?height=80&width=120" },
-  { id: "new-cars", name: "Новые авто", icon: "sparkles", image: "/placeholder.svg?height=80&width=120" },
-  { id: "select", name: "Селект", icon: "star", image: "/placeholder.svg?height=80&width=120" },
-  { id: "trucks", name: "Грузовики и спецтехника", icon: "truck", image: "/placeholder.svg?height=80&width=120" },
-  { id: "moto", name: "Мотоциклы и мототехника", icon: "bike", image: "/placeholder.svg?height=80&width=120" },
-  { id: "rent-car", name: "Аренда авто", icon: "key", image: "/placeholder.svg?height=80&width=120" },
-  { id: "rent-equipment", name: "Аренда техники", icon: "settings", image: "/placeholder.svg?height=80&width=120" },
-  { id: "parts", name: "Запчасти", icon: "cog", image: "/placeholder.svg?height=80&width=120" },
+  { id: "cars", name: "Легковые авто", icon: "car", image: "/big_637774_123083_999.webp" },
+  { id: "new-cars", name: "Новые авто", icon: "sparkles", image: "/big_637774_123083_999.webp" },
+  { id: "select", name: "Селект", icon: "star", image: "/big_637774_123083_999.webp" },
+  { id: "trucks", name: "Грузовики и спецтехника", icon: "truck", image: "/big_637774_123083_999.webp" },
+  { id: "moto", name: "Мотоциклы и мототехника", icon: "bike", image: "/big_637774_123083_999.webp" },
+  { id: "rent-car", name: "Аренда авто", icon: "key", image: "/big_637774_123083_999.webp" },
+  { id: "rent-equipment", name: "Аренда техники", icon: "settings", image: "/big_637774_123083_999.webp" },
+  { id: "parts", name: "Запчасти", icon: "cog", image: "/big_637774_123083_999.webp" },
 ]
 
 export const services: Service[] = [
@@ -36,7 +36,7 @@ export const vehicles: Vehicle[] = [
     bodyType: "седан",
     location: "Московская обл., г.о. Ступино, ТСН Антей",
     timeAgo: "1 час назад",
-    images: ["/placeholder.svg?height=300&width=400"],
+    images: ["/big_637774_123083_999.webp"],
     priceType: "sale",
   },
   {
@@ -52,7 +52,7 @@ export const vehicles: Vehicle[] = [
     bodyType: "",
     location: "Новосибирская обл., Новосибирск",
     timeAgo: "2 часа назад",
-    images: ["/placeholder.svg?height=300&width=400"],
+    images: ["/big_637774_123083_999.webp"],
   },
   {
     id: "3",
@@ -67,7 +67,7 @@ export const vehicles: Vehicle[] = [
     bodyType: "седан",
     location: "Нижегородская обл., Нижний Новгород",
     timeAgo: "1 час назад",
-    images: ["/placeholder.svg?height=300&width=400"],
+    images: ["/big_637774_123083_999.webp"],
     hasCredit: true,
     priceType: "sale",
   },
@@ -83,7 +83,7 @@ export const vehicles: Vehicle[] = [
     bodyType: "лодка",
     location: "Ростовская обл., Неклиновский р-н",
     timeAgo: "2 часа назад",
-    images: ["/placeholder.svg?height=300&width=400"],
+    images: ["/big_637774_123083_999.webp"],
     priceType: "sale",
   },
   {
@@ -99,7 +99,7 @@ export const vehicles: Vehicle[] = [
     bodyType: "седан",
     location: "Нижегородская обл., Нижний Новгород",
     timeAgo: "3 дня назад",
-    images: ["/placeholder.svg?height=300&width=400"],
+    images: ["/big_637774_123083_999.webp"],
     badges: ["Надёжный партнёр"],
     priceType: "sale",
   },
@@ -115,7 +115,7 @@ export const vehicles: Vehicle[] = [
     bodyType: "седан",
     location: "Москва",
     timeAgo: "7 дней назад",
-    images: ["/placeholder.svg?height=300&width=400"],
+    images: ["/big_637774_123083_999.webp"],
     badges: ["1 владелец"],
     priceType: "sale",
   },
@@ -141,16 +141,16 @@ export const journalArticles = [
   {
     id: "1",
     title: "Как выбрать авто из рейтингов и топорок",
-    image: "/placeholder.svg?height=150&width=200",
+    image: "/big_637774_123083_999.webp",
   },
   {
     id: "2",
     title: "Зовите всех на Форум Авто",
-    image: "/placeholder.svg?height=150&width=200",
+    image: "/big_637774_123083_999.webp",
   },
   {
     id: "3",
     title: "Автоответы в чатах",
-    image: "/placeholder.svg?height=150&width=200",
+    image: "/big_637774_123083_999.webp",
   },
 ]

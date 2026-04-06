@@ -15,6 +15,7 @@ const recommendationCars = [
     location: "Чеченская Республика, Грозный",
     timeAgo: "1 час назад",
     badges: [],
+    img: "/big_637774_123083_999.webp",
   },
   {
     id: "r2",
@@ -26,6 +27,7 @@ const recommendationCars = [
     location: "Москва",
     timeAgo: "2 часа назад",
     badges: ["Надёжный партнёр"],
+    img: "/big_637774_123083_999.webp",
   },
   {
     id: "r3",
@@ -358,9 +360,17 @@ export function Recommendation() {
             <div className="relative">
               <div className="flex gap-1 overflow-x-auto scrollbar-hide">
                 <div className="flex-shrink-0 w-[75%] aspect-[4/3] bg-secondary relative">
-                  <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
-                    <span className="text-sm">Фото</span>
-                  </div>
+                  {car.img ? (
+                    <img
+                      src={car.img}
+                      alt={car.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+                      <span className="text-sm">Фото</span>
+                    </div>
+                  )}
                   {car.badges && car.badges.length > 0 && (
                     <div className="absolute bottom-2 left-2 flex gap-2">
                       {car.badges.map((badge, index) => (

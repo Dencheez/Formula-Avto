@@ -6,6 +6,7 @@ interface CategoryItem {
   id: string
   title: string
   subcategories: string[]
+  image?: string
 }
 
 const categoriesData: CategoryItem[] = [
@@ -13,26 +14,25 @@ const categoriesData: CategoryItem[] = [
     id: "commercial",
     title: "Коммерческий транспорт",
     subcategories: ["Грузовики", "Тягачи", "Прицепы", "Шины", "Сельхозтехника", "Ещё"],
+    image: "/images.jpg",
   },
   {
     id: "parts",
     title: "Запчасти",
     subcategories: ["Шины и диски", "Запчасти для авто", "Аудио- и видеотехника", "Ещё"],
+    image: "/zapchasti_dlya_specialnoy_tehniki.jpg",
   },
   {
     id: "moto",
     title: "Мотоциклы",
     subcategories: ["Мотоциклы", "Мопеды и скутеры", "Снегоходы", "Квадроциклы", "Ещё"],
+    image: "/moto2.jpg",
   },
   {
     id: "water",
     title: "Водный транспорт",
     subcategories: ["Моторные лодки", "Надувные лодки", "Катера и яхты", "Гидроциклы", "Ещё"],
-  },
-  {
-    id: "services",
-    title: "Транспортные услуги",
-    subcategories: ["Автосервисы", "Аренда авто", "Аренда спецтехники"],
+    image: "/image.webp",
   },
 ]
 
@@ -52,9 +52,17 @@ export function Categories() {
 
             {/* Image placeholder */}
             <div className="relative aspect-[16/9] bg-secondary rounded-xl overflow-hidden mb-3">
-              <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
-                <span className="text-sm">Фото</span>
-              </div>
+              {cat.image ? (
+                <img
+                  src={cat.image}
+                  alt={cat.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+                  <span className="text-sm">Фото</span>
+                </div>
+              )}
             </div>
 
             {/* Subcategory chips */}
@@ -67,11 +75,10 @@ export function Categories() {
                       activeCategory === `${cat.id}-${sub}` ? null : `${cat.id}-${sub}`
                     )
                   }
-                  className={`px-4 py-2 rounded-full border text-sm transition-colors ${
-                    activeCategory === `${cat.id}-${sub}`
-                      ? "bg-foreground text-background border-foreground"
-                      : "border-border hover:bg-secondary"
-                  }`}
+                  className={`px-4 py-2 rounded-full border text-sm transition-colors ${activeCategory === `${cat.id}-${sub}`
+                    ? "bg-foreground text-background border-foreground"
+                    : "border-border hover:bg-secondary"
+                    }`}
                 >
                   {sub}
                 </button>

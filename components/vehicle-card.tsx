@@ -22,9 +22,17 @@ export function VehicleCard({ vehicle, onFavorite, onCall, onMessage }: VehicleC
       <div className="relative">
         <div className="flex gap-1 overflow-x-auto scrollbar-hide">
           <div className="flex-shrink-0 w-full aspect-[4/3] bg-secondary relative">
-            <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
-              <span className="text-sm">Фото</span>
-            </div>
+            {vehicle.images && vehicle.images.length > 0 ? (
+              <img
+                src={vehicle.images[0]}
+                alt={vehicle.title}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+                <span className="text-sm">Фото</span>
+              </div>
+            )}
             {vehicle.badges && vehicle.badges.length > 0 && (
               <div className="absolute bottom-2 left-2 flex gap-2">
                 {vehicle.badges.map((badge, index) => (

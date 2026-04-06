@@ -11,6 +11,7 @@ const youngCars = [
     location: "Ставропольский край, Будённовский...",
     badge: "Только на Форум Авто",
     badgeColor: "bg-purple-600",
+    img: "/big_637774_123083_999.webp",
   },
   {
     id: "y2",
@@ -19,6 +20,7 @@ const youngCars = [
     location: "Москва",
     badge: "Надёжный партнёр",
     badgeColor: "bg-green-500",
+    img: "/big_637774_123083_999.webp",
   },
   {
     id: "y3",
@@ -69,9 +71,17 @@ export function Avto3() {
             className="min-w-[calc(50%-6px)] max-w-[calc(50%-6px)] snap-start rounded-xl overflow-hidden bg-background border border-border flex-shrink-0"
           >
             <div className="relative aspect-[4/3] bg-secondary">
-              <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-sm">
-                Фото
-              </div>
+              {car.img ? (
+                <img
+                  src={car.img}
+                  alt={car.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-sm">
+                  Фото
+                </div>
+              )}
               <span
                 className={`absolute bottom-2 left-2 px-2 py-1 ${car.badgeColor} text-white text-xs rounded`}
               >

@@ -39,9 +39,17 @@ export function DiscountCars() {
         {discountCars.map((car) => (
           <div key={car.id} className="rounded-xl overflow-hidden bg-background border border-border">
             <div className="relative aspect-[4/3] bg-secondary">
-              <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-sm">
-                {car.img}
-              </div>
+              {car.img ? (
+                <img
+                  src={car.img}
+                  alt={car.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-sm">
+                  Фото
+                </div>
+              )}
               <span className={`absolute bottom-2 left-2 px-2 py-1 ${car.badgeColor} text-white text-xs rounded`}>
                 {car.badge}
                 {car.badgeCount && <span className="ml-1">{car.badgeCount}</span>}
