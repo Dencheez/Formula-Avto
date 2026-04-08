@@ -39,16 +39,16 @@ export default function Home() {
   const renderHomeView = () => (
     <>
       <CategoryGrid onCategorySelect={handleCategorySelect} />
-      <CarSearchForm />
+      <CarSearchForm onShowResults={() => setCurrentView("listings")} />
       <div className="h-4" />
-      <DiscountCars />
+      <DiscountCars onShowAll={() => setCurrentView("listings")} />
       <PromoBanner />
       <div className="h-4" />
       <VinCheckSection />
       <div className="h-4" />
       <JournalSection />
       <ServicesGrid />
-      <Avto3 />
+      <Avto3 onShowAll={() => setCurrentView("listings")} />
       <Categories />
       <Recommendation />
 
@@ -95,6 +95,7 @@ export default function Home() {
       <FilterModal
         isOpen={isFilterOpen}
         onClose={() => setIsFilterOpen(false)}
+        onShowResults={() => setCurrentView("listings")}
       />
 
       <SaveSearchModal

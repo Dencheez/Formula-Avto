@@ -7,7 +7,11 @@ import { cn } from "@/lib/utils"
 
 import { youngCars } from "@/lib/data"
 
-export function Avto3() {
+interface Avto3Props {
+  onShowAll?: () => void
+}
+
+export function Avto3({ onShowAll }: Avto3Props) {
   const { toggleFavorite, isFavorite } = useFavorites()
 
   const formatPrice = (price: number) => {
@@ -68,7 +72,7 @@ export function Avto3() {
           </div>
         ))}
       </div>
-      <Button variant="outline" className="mt-4 rounded-xl">
+      <Button variant="outline" className="mt-4 rounded-xl" onClick={onShowAll}>
         Показать все
       </Button>
     </div>

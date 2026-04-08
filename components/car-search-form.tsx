@@ -103,7 +103,11 @@ const years = Array.from({ length: 30 }, (_, i) => 2025 - i)
 
 type ModalType = "brand" | "price" | "year" | null
 
-export function CarSearchForm() {
+interface CarSearchFormProps {
+  onShowResults?: () => void
+}
+
+export function CarSearchForm({ onShowResults }: CarSearchFormProps) {
   const [activeModal, setActiveModal] = useState<ModalType>(null)
   const [selectedBrand, setSelectedBrand] = useState<string | null>(null)
   const [selectedModel, setSelectedModel] = useState<string | null>(null)
@@ -224,7 +228,10 @@ export function CarSearchForm() {
             </button>
           </div>
 
-          <Button className="w-full bg-foreground text-background hover:bg-foreground/90 rounded-xl py-6">
+          <Button 
+            className="w-full bg-foreground text-background hover:bg-foreground/90 rounded-xl py-6"
+            onClick={onShowResults}
+          >
             Показать {getCount()} объявлений
           </Button>
         </div>

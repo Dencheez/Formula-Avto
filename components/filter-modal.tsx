@@ -10,9 +10,10 @@ import { cn } from "@/lib/utils"
 interface FilterModalProps {
   isOpen: boolean
   onClose: () => void
+  onShowResults?: () => void
 }
 
-export function FilterModal({ isOpen, onClose }: FilterModalProps) {
+export function FilterModal({ isOpen, onClose, onShowResults }: FilterModalProps) {
   if (!isOpen) return null
 
   return (
@@ -105,7 +106,10 @@ export function FilterModal({ isOpen, onClose }: FilterModalProps) {
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-background border-t border-border">
         <Button 
           className="w-full py-6 rounded-xl bg-foreground text-background hover:bg-foreground/90"
-          onClick={onClose}
+          onClick={() => {
+            onShowResults?.()
+            onClose()
+          }}
         >
           Показать больше 1 тыс. объявлений
         </Button>

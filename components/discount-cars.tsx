@@ -7,7 +7,11 @@ import { cn } from "@/lib/utils"
 
 import { discountCars } from "@/lib/data"
 
-export function DiscountCars() {
+interface DiscountCarsProps {
+  onShowAll?: () => void
+}
+
+export function DiscountCars({ onShowAll }: DiscountCarsProps) {
   const { toggleFavorite, isFavorite } = useFavorites()
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("ru-RU").format(price)
@@ -42,11 +46,11 @@ export function DiscountCars() {
                 onClick={() => toggleFavorite(car.id)}
                 className="absolute top-2 right-2 h-8 w-8 bg-white/80 rounded-full group"
               >
-                <Heart 
+                <Heart
                   className={cn(
                     "h-4 w-4 transition-colors",
                     isFavorite(car.id) ? "fill-red-500 text-red-500" : "text-gray-400 group-hover:text-red-500"
-                  )} 
+                  )}
                 />
               </Button>
             </div>
@@ -68,7 +72,7 @@ export function DiscountCars() {
           </div>
         ))}
       </div>
-      <Button variant="outline" className="mt-4 rounded-xl">
+      <Button variant="outline" className="mt-4 rounded-xl" onClick={onShowAll}>
         Показать все
       </Button>
     </div>
