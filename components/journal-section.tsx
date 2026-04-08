@@ -19,12 +19,14 @@ export function JournalSection() {
                   alt={article.title}
                   className="absolute inset-0 w-25 h-25 object-cover rounded-full mx-auto mt-2"
                 />
+
               ) : (
                 <div className="w-20 h-20 rounded-full bg-muted-foreground/10" />
               )}
             </div>
             <div className="p-3">
               <p className="text-sm text-center line-clamp-2">{article.title}</p>
+              <p className="text-sm text-center line-clamp-2">{article.podtitle}</p>
             </div>
           </button>
         ))}

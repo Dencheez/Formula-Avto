@@ -4,7 +4,7 @@ export const categories: Category[] = [
   { id: "cars", name: "Легковые авто", icon: "car", image: "/big_637774_123083_999.webp" },
   { id: "new-cars", name: "Новые авто", icon: "sparkles", image: "/big_637774_123083_999.webp" },
   { id: "select", name: "Селект", icon: "star", image: "/big_637774_123083_999.webp" },
-  { id: "trucks", name: "Грузовики и спецтехника", icon: "truck", image: "/big_637774_123083_999.webp" },
+  { id: "trucks", name: "Грузовики и спецтехника", icon: "truck", image: "/big_637774_123083_999.webp", },
   { id: "moto", name: "Мотоциклы и мототехника", icon: "bike", image: "/big_637774_123083_999.webp" },
   { id: "rent-car", name: "Аренда авто", icon: "key", image: "/big_637774_123083_999.webp" },
   { id: "rent-equipment", name: "Аренда техники", icon: "settings", image: "/big_637774_123083_999.webp" },
@@ -145,7 +145,8 @@ export const journalArticles = [
   },
   {
     id: "2",
-    title: "Автоответы в чатах",
+    title: "Автоответы",
+    podtitle: "в чатах",
     img: "/avto-rating.jpg",
   },
   {
@@ -165,7 +166,8 @@ export const journalArticles = [
   },
   {
     id: "6",
-    title: "Та самая машина",
+    title: "Та самая",
+    podtitle: "машина",
     img: "/big_637774_123083_999.webp",
   },
   {

@@ -186,14 +186,14 @@ export function CarSearchForm() {
 
   return (
     <>
-      <div className="mx-4 p-4 bg-secondary/30 rounded-2xl">
+      <div className="mx-4 p-4 bg-blue-100 rounded-2xl">
         <h3 className="text-lg font-semibold mb-4">Найти автомобиль</h3>
 
         <div className="space-y-3">
           {/* Brand & Model */}
           <button
             onClick={() => setActiveModal("brand")}
-            className="w-full flex items-center justify-between p-3 bg-background rounded-xl border border-border"
+            className="w-full flex items-center justify-between p-3 bg-white rounded-xl"
           >
             <span className={brandModelLabel() ? "text-foreground font-medium" : "text-muted-foreground"}>
               {brandModelLabel() || "Марка и модель"}
@@ -205,7 +205,7 @@ export function CarSearchForm() {
           <div className="flex gap-3">
             <button
               onClick={() => setActiveModal("price")}
-              className="flex-1 flex items-center justify-between p-3 bg-background rounded-xl border border-border"
+              className="flex-1 flex items-center justify-between p-3 bg-white rounded-xl"
             >
               <span className={selectedPrice ? "text-foreground font-medium text-sm" : "text-muted-foreground"}>
                 {selectedPrice || "Цена"}
@@ -215,7 +215,7 @@ export function CarSearchForm() {
 
             <button
               onClick={() => setActiveModal("year")}
-              className="flex-1 flex items-center justify-between p-3 bg-background rounded-xl border border-border"
+              className="flex-1 flex items-center justify-between p-3 bg-white rounded-xl"
             >
               <span className={yearLabel() ? "text-foreground font-medium text-sm" : "text-muted-foreground"}>
                 {yearLabel() || "Год"}
@@ -338,9 +338,8 @@ export function CarSearchForm() {
                 <button
                   key={price}
                   onClick={() => handlePriceSelect(price)}
-                  className={`w-full text-left px-4 py-3.5 border-b border-border hover:bg-secondary/50 transition-colors ${
-                    selectedPrice === price ? "bg-secondary font-medium" : ""
-                  }`}
+                  className={`w-full text-left px-4 py-3.5 border-b border-border hover:bg-secondary/50 transition-colors ${selectedPrice === price ? "bg-secondary font-medium" : ""
+                    }`}
                 >
                   <span className="text-base">{price}</span>
                 </button>
@@ -355,16 +354,14 @@ export function CarSearchForm() {
               <div className="px-4 py-3 border-b border-border bg-secondary/30">
                 <div className="flex gap-2">
                   <div
-                    className={`flex-1 text-center py-2 rounded-lg text-sm font-medium ${
-                      yearStep === "from" ? "bg-foreground text-background" : "bg-secondary"
-                    }`}
+                    className={`flex-1 text-center py-2 rounded-lg text-sm font-medium ${yearStep === "from" ? "bg-foreground text-background" : "bg-secondary"
+                      }`}
                   >
                     от {selectedYearFrom || "..."}
                   </div>
                   <div
-                    className={`flex-1 text-center py-2 rounded-lg text-sm font-medium ${
-                      yearStep === "to" ? "bg-foreground text-background" : "bg-secondary"
-                    }`}
+                    className={`flex-1 text-center py-2 rounded-lg text-sm font-medium ${yearStep === "to" ? "bg-foreground text-background" : "bg-secondary"
+                      }`}
                   >
                     до {selectedYearTo || "..."}
                   </div>
@@ -378,16 +375,14 @@ export function CarSearchForm() {
                     key={year}
                     onClick={() => !isDisabled && handleYearSelect(year)}
                     disabled={isDisabled}
-                    className={`w-full text-left px-4 py-3.5 border-b border-border transition-colors ${
-                      isDisabled
-                        ? "text-muted-foreground/40 cursor-not-allowed"
-                        : "hover:bg-secondary/50"
-                    } ${
-                      (yearStep === "from" && selectedYearFrom === year) ||
-                      (yearStep === "to" && selectedYearTo === year)
+                    className={`w-full text-left px-4 py-3.5 border-b border-border transition-colors ${isDisabled
+                      ? "text-muted-foreground/40 cursor-not-allowed"
+                      : "hover:bg-secondary/50"
+                      } ${(yearStep === "from" && selectedYearFrom === year) ||
+                        (yearStep === "to" && selectedYearTo === year)
                         ? "bg-secondary font-medium"
                         : ""
-                    }`}
+                      }`}
                   >
                     <span className="text-base">{year}</span>
                   </button>
