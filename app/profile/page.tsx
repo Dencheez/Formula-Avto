@@ -71,12 +71,16 @@ export default function ProfilePage() {
                 <p className="text-[#808080] text-[15px] mb-8">
                   {profile?.city || "Город не указан"} • {user?.email}
                 </p>
+                <Link href="/listings" className="w-full max-w-[320px] mb-4">
+                  <button className="w-full bg-[#1A1A1A] text-white py-3.5 rounded-xl font-medium text-[16px] hover:bg-black transition-colors">
+                    Добавить объявление
+                  </button>
+                </Link>
               </>
             )}
           </div>
         ) : (
           <>
-            {/* Твоя крутая иллюстрация */}
             <div className="relative w-40 h-40 mb-8 mt-20 mx-auto">
               <div className="absolute top-4 left-6 w-14 h-14 bg-[#0099FF] rounded-full flex items-center justify-center shadow-sm">
                 <MessageSquare className="w-7 h-7 text-white" fill="currentColor" />
