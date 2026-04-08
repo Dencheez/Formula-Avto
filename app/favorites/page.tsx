@@ -7,11 +7,17 @@ import { FooterLinks } from "@/components/footer-links"
 import { Recommendation } from "@/components/Recommendation"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
+import { useFavorites } from "@/lib/favorites-context"
+import { allVehicles } from "@/lib/data"
+import { VehicleCard } from "@/components/vehicle-card"
 
 type Tab = "listings" | "searches" | "comparison" | "profiles"
 
 export default function FavoritesPage() {
   const [activeTab, setActiveTab] = useState<Tab>("listings")
+  const { favorites } = useFavorites()
+  
+  const favoriteVehicles = allVehicles.filter(v => favorites.has(v.id))
 
   const tabs = [
     { id: "listings", label: "Объявления" },
@@ -60,7 +66,7 @@ export default function FavoritesPage() {
 
       {/* Content */}
       <div className="flex-1 flex flex-col">
-        {activeTab === "listings" && <ListingsContent />}
+        {activeTab === "listings" && <ListingsContent vehicles={favoriteVehicles} />}
         {activeTab === "searches" && <SearchesContent />}
         {activeTab === "comparison" && <ComparisonContent />}
         {activeTab === "profiles" && <ProfilesContent />}
@@ -71,42 +77,54 @@ export default function FavoritesPage() {
   )
 }
 
-function ListingsContent() {
-  return (
-    <div className="flex flex-col flex-1">
-      <div className="px-4 py-3">
-        <p className="text-[#888888] text-[15px] leading-snug max-w-[340px]">
-          Войдите в профиль, чтобы посмотреть сохранённые объявления
-        </p>
-      </div>
-
-      {/* Avito Banner Mock */}
-      <div className="mx-4 my-2 relative overflow-hidden rounded-2xl bg-[#0F0F3D] text-white p-5 aspect-[2.4/1]">
-        <div className="relative z-10 flex flex-col justify-center h-full max-w-[60%]">
-          <div className="flex items-center gap-2 mb-2 font-bold text-lg">
-            Форум Авто Бизнес 360
-          </div>
-          <div className="mt-1">
-            <span className="inline-block border border-blue-500 rounded-full px-3 py-1 text-sm font-semibold mb-1">
-              Профессиональное
-            </span>
-            <br />
-            <span className="inline-block border border-blue-500 rounded-full px-3 py-1 text-sm font-semibold">
-              оборудование
-            </span>
-          </div>
-          <p className="text-xs mt-2 text-gray-300">По разумным ценам</p>
+function ListingsContent({ vehicles }: { vehicles: typeof allVehicles }) {
+  if (vehicles.length === 0) {
+    return (
+      <div className="flex flex-col flex-1">
+        <div className="px-4 py-3">
+          <p className="text-[#888888] text-[15px] leading-snug max-w-[340px]">
+            Войдите в профиль, чтобы посмотреть сохранённые объявления
+          </p>
         </div>
 
-        {/* Abstract decorative circles */}
-        <div className="absolute right-0 top-0 bottom-0 w-[40%] bg-red-500 rounded-l-full opacity-90 transform translate-x-8"></div>
-        <div className="absolute right-0 top-[-20%] bottom-[-20%] w-[35%] bg-[#1A1A4F] rounded-l-full opacity-90 transform translate-x-12"></div>
-      </div>
+        {/* Avito Banner Mock */}
+        <div className="mx-4 my-2 relative overflow-hidden rounded-2xl bg-[#0F0F3D] text-white p-5 aspect-[2.4/1]">
+          <div className="relative z-10 flex flex-col justify-center h-full max-w-[60%]">
+            <div className="flex items-center gap-2 mb-2 font-bold text-lg">
+              Форум Авто Бизнес 360
+            </div>
+            <div className="mt-1">
+              <span className="inline-block border border-blue-500 rounded-full px-3 py-1 text-sm font-semibold mb-1">
+                Профессиональное
+              </span>
+              <br />
+              <span className="inline-block border border-blue-500 rounded-full px-3 py-1 text-sm font-semibold">
+                оборудование
+              </span>
+            </div>
+            <p className="text-xs mt-2 text-gray-300">По разумным ценам</p>
+          </div>
 
-      <div className="mt-2">
-        <Recommendation />
-      </div>
+          <div className="absolute right-0 top-0 bottom-0 w-[40%] bg-red-500 rounded-l-full opacity-90 transform translate-x-8"></div>
+          <div className="absolute right-0 top-[-20%] bottom-[-20%] w-[35%] bg-[#1A1A4F] rounded-l-full opacity-90 transform translate-x-12"></div>
+        </div>
 
+        <div className="mt-2">
+          <Recommendation />
+        </div>
+
+        <FooterLinks />
+      </div>
+    )
+  }
+
+  return (
+    <div className="flex flex-col flex-1">
+      <div className="flex-1">
+        {vehicles.map((vehicle) => (
+          <VehicleCard key={vehicle.id} vehicle={vehicle} />
+        ))}
+      </div>
       <FooterLinks />
     </div>
   )

@@ -2,32 +2,13 @@
 
 import { Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useFavorites } from "@/lib/favorites-context"
+import { cn } from "@/lib/utils"
 
-const discountCars = [
-  {
-    id: "1",
-    title: "Kia Rio 1.6 AT, 2016,...",
-    price: 899999,
-    originalPrice: 980000,
-    location: "Нижегородская обл., Нижний Новгород",
-    badge: "Надёжный партнёр",
-    badgeColor: "bg-green-500",
-    img: "/big_637774_123083_999.webp",
-  },
-  {
-    id: "2",
-    title: "Kia Rio 1.6 AT, 2016,...",
-    price: 799000,
-    location: "Москва",
-    timeAgo: "7 дней назад",
-    badge: "1 владелец",
-    badgeColor: "bg-blue-500",
-    badgeCount: "14",
-    img: "/big_637774_123083_999.webp",
-  },
-]
+import { discountCars } from "@/lib/data"
 
 export function DiscountCars() {
+  const { toggleFavorite, isFavorite } = useFavorites()
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("ru-RU").format(price)
   }
@@ -39,9 +20,9 @@ export function DiscountCars() {
         {discountCars.map((car) => (
           <div key={car.id} className="rounded-xl overflow-hidden bg-background border border-border">
             <div className="relative aspect-[4/3] bg-secondary">
-              {car.img ? (
+              {car.images && car.images.length > 0 ? (
                 <img
-                  src={car.img}
+                  src={car.images[0]}
                   alt={car.title}
                   className="absolute inset-0 w-full h-full object-cover"
                 />
@@ -50,16 +31,23 @@ export function DiscountCars() {
                   Фото
                 </div>
               )}
-              <span className={`absolute bottom-2 left-2 px-2 py-1 ${car.badgeColor} text-white text-xs rounded`}>
-                {car.badge}
-                {car.badgeCount && <span className="ml-1">{car.badgeCount}</span>}
-              </span>
+              {car.badges && car.badges.length > 0 && (
+                <span className="absolute bottom-2 left-2 px-2 py-1 bg-primary text-white text-xs rounded">
+                  {car.badges[0]}
+                </span>
+              )}
               <Button
                 size="icon"
                 variant="ghost"
-                className="absolute top-2 right-2 h-8 w-8 bg-white/80 rounded-full"
+                onClick={() => toggleFavorite(car.id)}
+                className="absolute top-2 right-2 h-8 w-8 bg-white/80 rounded-full group"
               >
-                <Heart className="h-4 w-4" />
+                <Heart 
+                  className={cn(
+                    "h-4 w-4 transition-colors",
+                    isFavorite(car.id) ? "fill-red-500 text-red-500" : "text-gray-400 group-hover:text-red-500"
+                  )} 
+                />
               </Button>
             </div>
             <div className="p-3">

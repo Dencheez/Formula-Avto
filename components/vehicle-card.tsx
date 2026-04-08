@@ -3,6 +3,7 @@
 import { Phone, MessageSquare, Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import type { Vehicle } from "@/lib/types"
+import { useFavorites } from "@/lib/favorites-context"
 import { cn } from "@/lib/utils"
 
 interface VehicleCardProps {
@@ -13,6 +14,9 @@ interface VehicleCardProps {
 }
 
 export function VehicleCard({ vehicle, onFavorite, onCall, onMessage }: VehicleCardProps) {
+  const { toggleFavorite, isFavorite } = useFavorites()
+  const liked = isFavorite(vehicle.id)
+
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("ru-RU").format(price)
   }
@@ -35,7 +39,7 @@ export function VehicleCard({ vehicle, onFavorite, onCall, onMessage }: VehicleC
             )}
             {vehicle.badges && vehicle.badges.length > 0 && (
               <div className="absolute bottom-2 left-2 flex gap-2">
-                {vehicle.badges.map((badge, index) => (
+                {vehicle.badges.map((badge: string, index: number) => (
                   <span
                     key={index}
                     className={cn(
@@ -118,10 +122,18 @@ export function VehicleCard({ vehicle, onFavorite, onCall, onMessage }: VehicleC
             <Button
               size="icon"
               variant="ghost"
-              onClick={() => onFavorite?.(vehicle.id)}
-              className="h-10 w-10"
+              onClick={() => {
+                toggleFavorite(vehicle.id)
+                onFavorite?.(vehicle.id)
+              }}
+              className="h-10 w-10 group"
             >
-              <Heart className="h-5 w-5" />
+              <Heart 
+                className={cn(
+                  "h-5 w-5 transition-colors", 
+                  liked ? "fill-red-500 text-red-500" : "text-muted-foreground group-hover:text-red-500"
+                )} 
+              />
             </Button>
           </div>
         </div>

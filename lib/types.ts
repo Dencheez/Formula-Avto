@@ -17,6 +17,7 @@ export interface Vehicle {
   hasCredit?: boolean
   discount?: number
   originalPrice?: number
+  note?: string
 }
 
 export interface Category {

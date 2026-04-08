@@ -2,61 +2,14 @@
 
 import { Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useFavorites } from "@/lib/favorites-context"
+import { cn } from "@/lib/utils"
 
-const youngCars = [
-  {
-    id: "y1",
-    title: "Kia Rio 1.6 MT, 2021, 86 000 км",
-    price: 1500000,
-    location: "Ставропольский край, Будённовский...",
-    badge: "Только на Форум Авто",
-    badgeColor: "bg-purple-600",
-    img: "/big_637774_123083_999.webp",
-  },
-  {
-    id: "y2",
-    title: "Toyota Camry 2.5 AT, 2020,...",
-    price: 3000000,
-    location: "Москва",
-    badge: "Надёжный партнёр",
-    badgeColor: "bg-green-500",
-    img: "/big_637774_123083_999.webp",
-  },
-  {
-    id: "y3",
-    title: "Hyundai Tucson 2.0 AT, 2022, 45 000 км",
-    price: 2800000,
-    location: "Санкт-Петербург",
-    badge: "1 владелец",
-    badgeColor: "bg-blue-500",
-  },
-  {
-    id: "y4",
-    title: "Volkswagen Polo 1.6 AT, 2021, 52 000 км",
-    price: 1350000,
-    location: "Краснодарский край, Краснодар",
-    badge: "Надёжный партнёр",
-    badgeColor: "bg-green-500",
-  },
-  {
-    id: "y5",
-    title: "Skoda Octavia 1.4 AT, 2022, 38 000 км",
-    price: 2100000,
-    location: "Московская обл., Химки",
-    badge: "Проверено",
-    badgeColor: "bg-blue-500",
-  },
-  {
-    id: "y6",
-    title: "Geely Coolray 1.5 AT, 2023, 15 000 км",
-    price: 1750000,
-    location: "Новосибирская обл., Новосибирск",
-    badge: "1 владелец",
-    badgeColor: "bg-blue-500",
-  },
-]
+import { youngCars } from "@/lib/data"
 
 export function Avto3() {
+  const { toggleFavorite, isFavorite } = useFavorites()
+
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("ru-RU").format(price)
   }
@@ -71,9 +24,9 @@ export function Avto3() {
             className="min-w-[calc(50%-6px)] max-w-[calc(50%-6px)] snap-start rounded-xl overflow-hidden bg-background border border-border flex-shrink-0"
           >
             <div className="relative aspect-[4/3] bg-secondary">
-              {car.img ? (
+              {car.images && car.images.length > 0 ? (
                 <img
-                  src={car.img}
+                  src={car.images[0]}
                   alt={car.title}
                   className="absolute inset-0 w-full h-full object-cover"
                 />
@@ -82,17 +35,25 @@ export function Avto3() {
                   Фото
                 </div>
               )}
-              <span
-                className={`absolute bottom-2 left-2 px-2 py-1 ${car.badgeColor} text-white text-xs rounded`}
-              >
-                {car.badge}
-              </span>
+              {car.badges && car.badges.length > 0 && (
+                <span
+                  className="absolute bottom-2 left-2 px-2 py-1 bg-primary text-white text-xs rounded"
+                >
+                  {car.badges[0]}
+                </span>
+              )}
               <Button
                 size="icon"
                 variant="ghost"
-                className="absolute top-2 right-2 h-8 w-8 bg-white/80 rounded-full"
+                onClick={() => toggleFavorite(car.id)}
+                className="absolute top-2 right-2 h-8 w-8 bg-white/80 rounded-full group"
               >
-                <Heart className="h-4 w-4" />
+                <Heart 
+                  className={cn(
+                    "h-4 w-4 transition-colors",
+                    isFavorite(car.id) ? "fill-red-500 text-red-500" : "text-gray-400 group-hover:text-red-500"
+                  )} 
+                />
               </Button>
             </div>
             <div className="p-3">
