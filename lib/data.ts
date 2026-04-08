@@ -764,7 +764,7 @@ export const recommendationCars: Vehicle[] = [
   },
 ]
 
-export const discountCars = [
+export const discountCars: Vehicle[] = [
   {
     id: "d1",
     title: "Kia Rio 1.6 AT, 2016,...",

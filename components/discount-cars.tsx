@@ -1,8 +1,9 @@
 "use client"
 
-import { Heart } from "lucide-react"
+import { Heart, Phone, MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useFavorites } from "@/lib/favorites-context"
+import { useContact } from "@/lib/contact-context"
 import { cn } from "@/lib/utils"
 
 import { discountCars } from "@/lib/data"
@@ -13,6 +14,7 @@ interface DiscountCarsProps {
 
 export function DiscountCars({ onShowAll }: DiscountCarsProps) {
   const { toggleFavorite, isFavorite } = useFavorites()
+  const { openContact } = useContact()
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("ru-RU").format(price)
   }
@@ -56,18 +58,34 @@ export function DiscountCars({ onShowAll }: DiscountCarsProps) {
             </div>
             <div className="p-3">
               <h3 className="text-sm font-medium line-clamp-2">{car.title}</h3>
-              <div className="flex items-baseline gap-1 mt-1">
-                <span className="font-bold">{formatPrice(car.price)} ₽</span>
+              <div className="flex items-center justify-between mt-2 flex-wrap gap-y-1">
+                <div className="flex flex-col">
+                  <span className="font-bold">{formatPrice(car.price)} ₽</span>
+                  {car.originalPrice && (
+                    <span className="text-[10px] text-muted-foreground line-through">
+                      {formatPrice(car.originalPrice)} ₽
+                    </span>
+                  )}
+                </div>
+                <div className="flex gap-1.5">
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    onClick={() => openContact(car)}
+                    className="h-7 w-7 rounded-full bg-green-500 hover:bg-green-600 text-white p-1"
+                  >
+                    <Phone className="h-3.5 w-3.5" />
+                  </Button>
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    onClick={() => openContact(car)}
+                    className="h-7 w-7 rounded-full bg-blue-500 hover:bg-blue-600 text-white p-1"
+                  >
+                    <MessageSquare className="h-3.5 w-3.5" />
+                  </Button>
+                </div>
               </div>
-              {car.originalPrice && (
-                <span className="text-xs text-muted-foreground line-through">
-                  {formatPrice(car.originalPrice)} ₽
-                </span>
-              )}
-              <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{car.location}</p>
-              {car.timeAgo && (
-                <p className="text-xs text-muted-foreground">{car.timeAgo}</p>
-              )}
             </div>
           </div>
         ))}

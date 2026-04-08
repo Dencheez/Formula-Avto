@@ -4,7 +4,9 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import { AuthProvider } from "@/lib/auth-context"
 import { FavoritesProvider } from "@/lib/favorites-context"
+import { ContactProvider } from "@/lib/contact-context"
 import { AuthModal } from "@/components/auth-modal"
+import { ContactModal } from "@/components/contact-modal"
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
@@ -42,8 +44,11 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <FavoritesProvider>
           <AuthProvider>
-            {children}
-            <AuthModal />
+            <ContactProvider>
+              {children}
+              <AuthModal />
+              <ContactModal />
+            </ContactProvider>
           </AuthProvider>
         </FavoritesProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}

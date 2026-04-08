@@ -4,6 +4,7 @@ import { Phone, MessageSquare, Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import type { Vehicle } from "@/lib/types"
 import { useFavorites } from "@/lib/favorites-context"
+import { useContact } from "@/lib/contact-context"
 import { cn } from "@/lib/utils"
 
 interface VehicleCardProps {
@@ -15,6 +16,7 @@ interface VehicleCardProps {
 
 export function VehicleCard({ vehicle, onFavorite, onCall, onMessage }: VehicleCardProps) {
   const { toggleFavorite, isFavorite } = useFavorites()
+  const { openContact } = useContact()
   const liked = isFavorite(vehicle.id)
 
   const formatPrice = (price: number) => {
@@ -106,7 +108,10 @@ export function VehicleCard({ vehicle, onFavorite, onCall, onMessage }: VehicleC
             <Button
               size="icon"
               variant="ghost"
-              onClick={() => onCall?.(vehicle.id)}
+              onClick={() => {
+                onCall?.(vehicle.id)
+                openContact(vehicle)
+              }}
               className="h-10 w-10 rounded-full bg-green-500 hover:bg-green-600 text-white"
             >
               <Phone className="h-5 w-5" />
@@ -114,7 +119,10 @@ export function VehicleCard({ vehicle, onFavorite, onCall, onMessage }: VehicleC
             <Button
               size="icon"
               variant="ghost"
-              onClick={() => onMessage?.(vehicle.id)}
+              onClick={() => {
+                onMessage?.(vehicle.id)
+                openContact(vehicle)
+              }}
               className="h-10 w-10 rounded-full bg-blue-500 hover:bg-blue-600 text-white"
             >
               <MessageSquare className="h-5 w-5" />

@@ -4,11 +4,13 @@ import { useState } from "react"
 import { Phone, MessageSquare, Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useFavorites } from "@/lib/favorites-context"
+import { useContact } from "@/lib/contact-context"
 import { cn } from "@/lib/utils"
 import { recommendationCars } from "@/lib/data"
 
 export function Recommendation() {
   const { toggleFavorite, isFavorite } = useFavorites()
+  const { openContact } = useContact()
   const [visibleCount, setVisibleCount] = useState(10)
 
   const formatPrice = (price: number) => {
@@ -105,6 +107,7 @@ export function Recommendation() {
                   <Button
                     size="icon"
                     variant="ghost"
+                    onClick={() => openContact(car)}
                     className="h-10 w-10 rounded-full bg-green-500 hover:bg-green-600 text-white"
                   >
                     <Phone className="h-5 w-5" />
@@ -112,21 +115,22 @@ export function Recommendation() {
                   <Button
                     size="icon"
                     variant="ghost"
+                    onClick={() => openContact(car)}
                     className="h-10 w-10 rounded-full bg-blue-500 hover:bg-blue-600 text-white"
                   >
                     <MessageSquare className="h-5 w-5" />
                   </Button>
-                  <Button 
-                    size="icon" 
-                    variant="ghost" 
+                  <Button
+                    size="icon"
+                    variant="ghost"
                     onClick={() => toggleFavorite(car.id)}
                     className="h-10 w-10 group"
                   >
-                    <Heart 
+                    <Heart
                       className={cn(
                         "h-5 w-5 transition-colors",
                         isFavorite(car.id) ? "fill-red-500 text-red-500" : "text-muted-foreground group-hover:text-red-500"
-                      )} 
+                      )}
                     />
                   </Button>
                 </div>

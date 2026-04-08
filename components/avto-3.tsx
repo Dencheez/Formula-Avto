@@ -1,8 +1,9 @@
 "use client"
 
-import { Heart } from "lucide-react"
+import { Heart, Phone, MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useFavorites } from "@/lib/favorites-context"
+import { useContact } from "@/lib/contact-context"
 import { cn } from "@/lib/utils"
 
 import { youngCars } from "@/lib/data"
@@ -13,6 +14,7 @@ interface Avto3Props {
 
 export function Avto3({ onShowAll }: Avto3Props) {
   const { toggleFavorite, isFavorite } = useFavorites()
+  const { openContact } = useContact()
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("ru-RU").format(price)
@@ -52,18 +54,36 @@ export function Avto3({ onShowAll }: Avto3Props) {
                 onClick={() => toggleFavorite(car.id)}
                 className="absolute top-2 right-2 h-8 w-8 bg-white/80 rounded-full group"
               >
-                <Heart 
+                <Heart
                   className={cn(
                     "h-4 w-4 transition-colors",
                     isFavorite(car.id) ? "fill-red-500 text-red-500" : "text-gray-400 group-hover:text-red-500"
-                  )} 
+                  )}
                 />
               </Button>
             </div>
             <div className="p-3">
               <h3 className="text-sm font-medium line-clamp-2">{car.title}</h3>
-              <div className="flex items-baseline gap-1 mt-1">
-                <span className="font-bold">{formatPrice(car.price)} ₽</span>
+              <div className="flex items-center justify-between ">
+                <span className="font-bold text-[18px] mt-2">{formatPrice(car.price)} ₽</span>
+                <div className="flex flex-col gap-2">
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    onClick={() => openContact(car)}
+                    className="h-8 w-8 rounded-full bg-green-500 hover:bg-green-600 text-white p-1"
+                  >
+                    <Phone className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    onClick={() => openContact(car)}
+                    className="h-8 w-8 rounded-full bg-blue-500 hover:bg-blue-600 text-white p-1"
+                  >
+                    <MessageSquare className="h-4 w-4" />
+                  </Button>
+                </div>
               </div>
               <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
                 {car.location}
